@@ -7,7 +7,7 @@ sitemap:
     lastmod: 2022-05-16
     changefreq: weekly
 ---
-## Motivácia k bakalárskej práci
+<!---## Motivácia k bakalárskej práci
 
 **Predikcia časových radov pomocou metód strojového učenia v oblasti počítačovej bezpečnosti**
 
@@ -25,4 +25,5 @@ Konzultant práce: RNDr. JUDr. Pavol Sokol, PhD.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hlavnou motiváciou na výber tejto konkrétnej témy je to, že som v tomto roku absolvoval predmet “Úvod do neurónových sietí” ktorý vyučoval RNDr. Ľubomír Antoni, PhD., kde som získal základné informácie o neurónových sieťach a tieto informácie by som si chcel rozšíriť aj pomocou tejto bakalárskej prace.
 Ďalším dôvodom bol priateľsky prístup vedúceho tejto bakalárskej práce, s ktorým som už mal tú česť a možnosť spolupracovať na viacerých projektoch v rámci Univerzity. Práca s Rišom bola vždy veľkým prínosom pre môj odborný rast a verím, že aj vďaka nemu sa mi podarí napísať a obhájiť najlepšiu bakalársku prácu.
 
+--->
 
