@@ -4,15 +4,13 @@ bio:                'Jekyll version of the Massively theme by HTML5UP'
 description:        "Jekyll version of the Massively theme by HTML5UP"
 locale:             en_US
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "/bakalarka" # the base hostname & protocol for your site
+url: "/mis" # the base hostname & protocol for your site
 
 # Comments
 disqus_shortname:   default
 
 # Social
 analytics-id:       "default"
-facebook:           alex.gajdos.10
-instagram:          alexik197
 github:             alex1972000
 
 
