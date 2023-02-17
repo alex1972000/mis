@@ -1,0 +1,101 @@
+---
+layout: null
+title: Bakalárska práca - Home Page - Massively
+description: Every great website starts with a great homepage. The homepage tells your viewers what your site is all about and gives your viewers a place to come back to.
+sitemap:
+    priority: 1.0
+    lastmod: 2017-11-02
+    changefreq: weekly
+---
+<!DOCTYPE HTML>
+<html>
+	<head>
+    {% include head.html %}
+	</head>
+	<body class="is-loading">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				<!-- Intro -->
+					<div id="intro">
+            			<h1>Bakalárska práca</h1>
+						<h2>Alex Gajdoš</h2>
+						<p>Predikcia časových radov pomocou metód strojového učenia v oblasti počítačovej bezpečnosti</p>
+						<ul class="actions">
+							<li><a href="#header" class="button icon solo fa-arrow-down scrolly">Continue</a></li>
+						</ul>
+					</div>
+
+				<!-- Header -->
+					<header id="header">
+						<a href="{{ "/" | absolute_url }}" class="logo">Bakalárska práca</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+
+            {% include nav.html %}
+
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<!-- Featured Post -->
+							<article class="post featured">
+								<header class="major">
+									<h3><a href="#">Predikcia časových radov pomocou metód strojového učenia v oblasti počítačovej bezpečnosti</a></h3>
+									<p><b>Vedúci práce:</b> Mgr. Richard Staňa <br/>
+								    	<b>Konzultant práce:</b> RNDr. JUDr. Pavol Sokol, PhD.</p>
+								</header>
+								<a href="#" class="image main"><img src="{{ "/images/skuska_3.png" | absolute_url }}" alt="" /></a>
+							</article>
+
+						<!-- Posts -->
+							<section class="posts">
+                {% for post in site.posts limit:3 %}
+                {% assign mod3 = forloop.index | modulo: 3 %}
+  								<article>
+  									<header>
+  										<span class="date">{{ post.date | date_to_string }}</span>
+  										<h2><a href="{{ post.url | absolute_url }}">{{ post.title }}</a></h2>
+  									</header>
+  									<a href="{{ post.url | absolute_url }}" class="image fit"><img src="{{ post.image | absolute_url }}" alt="" /></a>
+  									<p>{{ post.excerpt }}</p>
+  									<ul class="actions">
+  										<li><a href="{{ post.url | absolute_url }}" class="button">Zistiť viac</a></li>
+  									</ul>
+  								</article>
+                  					{% if mod3 == 0 %}
+                  				<article>
+  									<header>
+  										<h2><a href="#">Sponsored</a></h2>
+  									</header>
+
+  								</article>
+                  			{% endif %}
+        					{% endfor %}
+
+							</section>
+
+						<!-- Footer -->
+							<footer>
+                <ul class="actions">
+				  <li><a href="{{ "/about/" | absolute_url }}" class="button">Motivácia práce</a></li>
+                  <li><a href="{{ "/blog/" | absolute_url }}" class="button">Ciele práce</a></li>
+                </ul>
+							</footer>
+
+					</div>
+
+				<!-- Footer -->
+				{% include foot.html %}
+
+			</div>
+
+		<!-- Scripts -->
+		{% include scripts-main.html %}
+    {% include tracking.html %}
+
+	</body>
+</html>
