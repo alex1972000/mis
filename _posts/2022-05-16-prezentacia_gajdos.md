@@ -10,26 +10,26 @@ Pr. Občan si vie zaplatiť za faktúru.
 
 Funkcionálne:
 
-- Registrácia
-  - Prístup k svojmu účtu
-    - Rozdelenie faktúry podľa zadaného rozsahu (mesačná, kvartál, ročná)
-  - Prístup k uhradeným platbám
-    - Prehľad celkových výdavkov
-  - Prístup aktuálnej spotreby
-- Spotreba
-  - Filtrovanie spotreby
-    - Podľa typu (elektrika, voda, plyn)
-      - Podľa dátumu a času
-      - Podľa výšky faktúry
-  - Vytvorenie faktúry
-    - Generovanie do vybraného formátu (pdf, docx, qr)
-- Zobrazenie štatistik
-  - Informácie pre obyvateľov SR
-    - Filtrovanie podľa kraja a okresu
-    - Filtrovanie podľa typu
-    - Zaradenie mojich štatistik v rámci SR
-  - Prehľad ušetrených peňazí
-    - Analýza finančného rozdielu medzi našim projektom a iným súkromným subjektom
+1. Registrácia
+   1.1 Prístup k svojmu účtu
+       1.1.1 Rozdelenie faktúry podľa zadaného rozsahu (mesačná, kvartál, mesačná)
+   1.2 Prístup k uhradeným platbám
+       1.2.1 Prehľad celkových výdavkov
+   1.3 Prístup aktuálnej spotreby
+2. Spotreba
+   2.1 Filtrovanie spotreby
+       2.1.1 Podľa typu (elektrika, voda, plyn)
+           2.1.1.1 Podľa dátumu a času
+           2.1.1.2 Podľa výšky faktúry
+   2.2 Vytvorenie faktúry
+       2.2.1 Generovanie do vybraného formátu (pdf, docx, qr)
+3. Zobrazenie štatistik
+   3.1 Informácie pre obyvateľov SR
+       3.1.1 Filtrovanie podľa kraja a okresu
+       3.1.2 Filtrovanie podľa typu
+       3.1.3 Zaradenie mojich štatistik v rámci SR
+   3.2 Prehľad ušetrených peňazí
+       3.2.1 Analýza finančného rozdielu medzi našim projektom a iným súkromným subjektom
 
 Nefunkcionálne:
 
