@@ -31,7 +31,7 @@ Funkcionálne:
         3.2.1	Analýza finančného rozdielu medzi našim projektom a iným súkromným subjektom
 
 Nefunkcionálne :
-1. Dostupnosť : Systém musí byť vždy dostupný a fungovať bez prerušenia, aby používatelia mohli platiť svoje účty kedykoľvek.
+1. Dostupnosť: Systém musí byť vždy dostupný a fungovať bez prerušenia, aby používatelia mohli platiť svoje účty kedykoľvek.
 2. Kompatibilita: Systém musí byť kompatibilný s rôznymi operačnými systémami ako iOS, Windows, Linux a pod.
 3. Škálovateľnosť: Systém by mal byť schopný zvládnuť veľký nárast počtu používateľov a objemu transakcií bez toho, aby sa znížila jeho výkonnosť.
 4. Bezpečnosť: Systém musí byť navrhnutý tak, aby bol odolný voči útokom hackerov a zabránil uniknutiu citlivých finančných a osobných informácií.
