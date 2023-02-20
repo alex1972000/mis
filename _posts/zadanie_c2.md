@@ -25,7 +25,7 @@ Funkcionálne:
 - Vytvorenie faktúry
     - Generovanie do vybraného formátu (pdf, docx, qr)
 
-# Zobrazenie štatistik
+# Štatistiky
 - Informácie pre obyvateľov SR
     - Filtrovanie podľa kraja a okresu
     - Filtrovanie podľa typu
