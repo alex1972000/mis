@@ -5,10 +5,11 @@ excerpt: ""
 image: "/images/presentation.png"
 ---
 
-<!--- TEXT --->
 
 Pr. Občan si vie zaplatiť za faktúru.
+
 Funkcionálne:
+
 1.	Registrácia
     1.1.	Prístup k svojmu úctu
         1.1.1.	Rozdelenie faktúry podľa zadaného rozsahu (mesačná, kvartál, mesačná)
@@ -30,7 +31,8 @@ Funkcionálne:
     3.2.	Prehľad ušetrených peňazí
         3.2.1	Analýza finančného rozdielu medzi našim projektom a iným súkromným subjektom
 
-Nefunkcionálne :
+Nefunkcionálne:
+
 1. Dostupnosť: Systém musí byť vždy dostupný a fungovať bez prerušenia, aby používatelia mohli platiť svoje účty kedykoľvek.
 2. Kompatibilita: Systém musí byť kompatibilný s rôznymi operačnými systémami ako iOS, Windows, Linux a pod.
 3. Škálovateľnosť: Systém by mal byť schopný zvládnuť veľký nárast počtu používateľov a objemu transakcií bez toho, aby sa znížila jeho výkonnosť.
