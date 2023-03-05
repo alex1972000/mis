@@ -35,11 +35,11 @@
       				<p>{{page.excerpt}}</p>
       			</header>
       			<div class="image main"><img src="{{page.image}}" alt=""></div>
-				  {{#if page.excerpt !== " "}}
+				  {{#if page.excerpt !== ""}}
 				  <p>{{content}}</p>
 				  {{else}}
 				  <div class="image-container">
-				  <img src="{{ page.image | absolute_url }}" alt="" />
+				  <img src="{{ page.image | absolute_url }}" alt="SWOT ANALÝZA" style="width:500px;height:400px;" />
 				</div>
 				{{/if}}
       		</section>
