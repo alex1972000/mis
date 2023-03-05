@@ -35,7 +35,13 @@
       				<p>{{page.excerpt}}</p>
       			</header>
       			<div class="image main"><img src="{{page.image}}" alt=""></div>
-      			<p>{{content}}</p>
+				  {{#if page.excerpt !== " "}}
+				  <p>{{content}}</p>
+				  {{else}}
+				  <div class="image-container">
+				  <img src="{{ page.image | absolute_url }}" alt="" />
+				</div>
+				{{/if}}
       		</section>
 
 					<!-- Footer -->
