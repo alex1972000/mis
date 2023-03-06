@@ -1,0 +1,466 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+USE `mydb` ;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`t_user`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`t_user` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `surname` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `address` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `login_UNIQUE` (`email` ASC) VISIBLE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`t_tariff`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`t_tariff` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `energy_type` VARCHAR(45) NOT NULL,
+  `price` DECIMAL NOT NULL,
+  `start_date` DATETIME NOT NULL,
+  `end_date` DATETIME NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`t_usage`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`t_usage` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `type` VARCHAR(45) NOT NULL,
+  `quantity` DECIMAL NOT NULL,
+  `date` DATETIME NOT NULL,
+  `user_id` INT NOT NULL,
+  `tariff_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_usage_user1_idx` (`user_id` ASC) VISIBLE,
+  INDEX `fk_usage_tariff1_idx` (`tariff_id` ASC) VISIBLE,
+  CONSTRAINT `fk_usage_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `mydb`.`t_user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_usage_tariff1`
+    FOREIGN KEY (`tariff_id`)
+    REFERENCES `mydb`.`t_tariff` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`t_payment`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`t_payment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `payment_time` DATETIME NOT NULL,
+  `amount` DECIMAL NOT NULL,
+  `payment_type` VARCHAR(45) NOT NULL,
+  `user_id` INT NOT NULL,
+  `usage_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_payment_user_idx` (`user_id` ASC) VISIBLE,
+  INDEX `fk_payment_usage1_idx` (`usage_id` ASC) VISIBLE,
+  CONSTRAINT `fk_payment_user`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `mydb`.`t_user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_payment_usage1`
+    FOREIGN KEY (`usage_id`)
+    REFERENCES `mydb`.`t_usage` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+SELECT * FROM t_user;
+
+insert into t_user (name, surname, email, password, address) values ('Sloane', 'Kissack', 'skissack0@51.la', 'pQwKCf', '118 Waywood Alley');
+insert into t_user (name, surname, email, password, address) values ('Anderea', 'Finnick', 'afinnick1@nasa.gov', 'OKqBR4qrx7', '9 Jana Road');
+insert into t_user (name, surname, email, password, address) values ('Antoinette', 'Sissens', 'asissens2@about.com', '2nKkXKqB9clT', '30 Scoville Place');
+insert into t_user (name, surname, email, password, address) values ('Ashien', 'Lovick', 'alovick3@answers.com', 'D2yPQ5', '26621 Mcbride Pass');
+insert into t_user (name, surname, email, password, address) values ('Gino', 'McTerlagh', 'gmcterlagh4@vistaprint.com', 'X9mcSP4A', '883 Killdeer Drive');
+insert into t_user (name, surname, email, password, address) values ('Robers', 'Amsden', 'ramsden5@npr.org', '2pFedbri', '1 Orin Alley');
+insert into t_user (name, surname, email, password, address) values ('Lettie', 'Fayerbrother', 'lfayerbrother6@photobucket.com', 'pXWPF8cQM', '097 Carberry Alley');
+insert into t_user (name, surname, email, password, address) values ('Malissa', 'Abade', 'mabade7@unesco.org', 'oibmvuLt', '0522 Melrose Road');
+insert into t_user (name, surname, email, password, address) values ('Sebastiano', 'Brantl', 'sbrantl8@hubpages.com', '85w0w0', '8370 Grim Pass');
+insert into t_user (name, surname, email, password, address) values ('Ansell', 'Berthome', 'aberthome9@google.com.au', 'lWK2dkG1w', '31488 Ridge Oak Place');
+insert into t_user (name, surname, email, password, address) values ('Edmund', 'Bottoner', 'ebottonera@cnet.com', '6y1Rk4pCQ9d', '04 Muir Parkway');
+insert into t_user (name, surname, email, password, address) values ('Heidie', 'Snow', 'hsnowb@shop-pro.jp', '0HxrZ9X2DRv', '64871 Duke Lane');
+insert into t_user (name, surname, email, password, address) values ('Gerri', 'Corradino', 'gcorradinoc@soundcloud.com', 'lTms7Rj7', '9745 Messerschmidt Hill');
+insert into t_user (name, surname, email, password, address) values ('Josephine', 'Grodden', 'jgroddend@spiegel.de', 'cRSf1Prf', '08 Gulseth Plaza');
+insert into t_user (name, surname, email, password, address) values ('Erminia', 'Ocklin', 'eockline@nsw.gov.au', 'Bph4DAkF0yTD', '0809 Iowa Parkway');
+insert into t_user (name, surname, email, password, address) values ('Rube', 'Emmanuele', 'remmanuelef@google.co.uk', 'HsnwNwn2ACOl', '896 Reindahl Road');
+insert into t_user (name, surname, email, password, address) values ('Margarete', 'Warret', 'mwarretg@prweb.com', 'RNbjMu', '75621 Vera Drive');
+insert into t_user (name, surname, email, password, address) values ('Darby', 'Broggelli', 'dbroggellih@google.com.hk', 'z9f6FCEO', '26167 Monument Street');
+insert into t_user (name, surname, email, password, address) values ('Joyce', 'Rankmore', 'jrankmorei@nymag.com', '5B86cfuTSoJ', '2 Vermont Terrace');
+insert into t_user (name, surname, email, password, address) values ('Herold', 'Piddick', 'hpiddickj@wikimedia.org', '6cuBql', '80 Sommers Alley');
+insert into t_user (name, surname, email, password, address) values ('Broderick', 'Dibnah', 'bdibnahk@themeforest.net', 'dsxjTXMCSI5', '31588 Evergreen Alley');
+insert into t_user (name, surname, email, password, address) values ('Em', 'Ronisch', 'eronischl@gmpg.org', '30xLMDQ', '6 Division Drive');
+insert into t_user (name, surname, email, password, address) values ('Hilliard', 'Annion', 'hannionm@sakura.ne.jp', 'eZtmp1zn', '8077 Dottie Junction');
+insert into t_user (name, surname, email, password, address) values ('Philipa', 'Finby', 'pfinbyn@slate.com', 'Gw3T5eBq', '850 Hudson Park');
+insert into t_user (name, surname, email, password, address) values ('Shell', 'Sprakes', 'ssprakeso@census.gov', 'ym2JKJ28iSIt', '0949 Memorial Avenue');
+insert into t_user (name, surname, email, password, address) values ('Rosette', 'Sparshutt', 'rsparshuttp@feedburner.com', 'ab82Ts2ap25Z', '66 Pankratz Avenue');
+insert into t_user (name, surname, email, password, address) values ('Harmony', 'Washbrook', 'hwashbrookq@photobucket.com', 'AcUTD4QKN', '988 John Wall Park');
+insert into t_user (name, surname, email, password, address) values ('Reinaldos', 'Grubey', 'rgrubeyr@multiply.com', '6LPK8083', '6 Cascade Alley');
+insert into t_user (name, surname, email, password, address) values ('Korie', 'Gush', 'kgushs@prnewswire.com', 'lmbKYbU', '838 Meadow Vale Drive');
+insert into t_user (name, surname, email, password, address) values ('Forest', 'Jovis', 'fjovist@surveymonkey.com', 'ePEUyyH', '766 Duke Park');
+insert into t_user (name, surname, email, password, address) values ('Carilyn', 'Shall', 'cshallu@home.pl', 'xm5S97', '45549 Susan Hill');
+insert into t_user (name, surname, email, password, address) values ('Liam', 'Mattingly', 'lmattinglyv@linkedin.com', 'wXK8Hqb02', '6850 Dayton Place');
+insert into t_user (name, surname, email, password, address) values ('Claudell', 'Yarnell', 'cyarnellw@ifeng.com', 'ZRDoAg', '0602 Hayes Lane');
+insert into t_user (name, surname, email, password, address) values ('Lawrence', 'Portam', 'lportamx@imgur.com', 'FEZpNcTCa9QT', '66 Eggendart Park');
+insert into t_user (name, surname, email, password, address) values ('Karney', 'Blow', 'kblowy@nba.com', 'O0V95Qk', '3 Briar Crest Crossing');
+insert into t_user (name, surname, email, password, address) values ('Blake', 'Tilmouth', 'btilmouthz@arstechnica.com', 'iPmjSTB', '26 Vahlen Crossing');
+insert into t_user (name, surname, email, password, address) values ('Aviva', 'Olivi', 'aolivi10@baidu.com', 'uxTUgNT8', '23842 Clove Parkway');
+insert into t_user (name, surname, email, password, address) values ('Jacquenetta', 'Rodliff', 'jrodliff11@mac.com', 'yY5ovREzs', '404 5th Park');
+insert into t_user (name, surname, email, password, address) values ('Ynes', 'Larder', 'ylarder12@twitter.com', 'iXs2gkfeVeLG', '5 Monument Trail');
+insert into t_user (name, surname, email, password, address) values ('Gilberto', 'Hecks', 'ghecks13@google.com', 'W1kfke5F', '9 Doe Crossing Circle');
+insert into t_user (name, surname, email, password, address) values ('Carine', 'Klazenga', 'cklazenga14@businesswire.com', '7hEiqCwCu', '1232 Hoard Point');
+insert into t_user (name, surname, email, password, address) values ('Audry', 'Kingdon', 'akingdon15@xing.com', 'J1rrOvk79io', '166 Toban Hill');
+insert into t_user (name, surname, email, password, address) values ('Kristofer', 'Berr', 'kberr16@dailymotion.com', 'RkLGfCMgGI', '08 Quincy Crossing');
+insert into t_user (name, surname, email, password, address) values ('Karly', 'Rains', 'krains17@github.com', 'zZbfGVTL', '1 Scoville Center');
+insert into t_user (name, surname, email, password, address) values ('Ruthann', 'Assel', 'rassel18@seattletimes.com', 'xzhBoeU', '46 Hauk Circle');
+insert into t_user (name, surname, email, password, address) values ('Clemence', 'Poundford', 'cpoundford19@ocn.ne.jp', 'dyhy7r', '15119 Randy Junction');
+insert into t_user (name, surname, email, password, address) values ('Marika', 'Gaenor', 'mgaenor1a@ftc.gov', 'lOPJzlPrY', '73 Twin Pines Point');
+insert into t_user (name, surname, email, password, address) values ('Mortimer', 'Nye', 'mnye1b@geocities.jp', 'OHESIwCtsgR', '7 Arkansas Center');
+insert into t_user (name, surname, email, password, address) values ('Ardelis', 'Busain', 'abusain1c@moonfruit.com', 'ucz9eADS5', '12398 Di Loreto Place');
+insert into t_user (name, surname, email, password, address) values ('Alicea', 'Gatcliff', 'agatcliff1d@jugem.jp', 'OKU4ZyYNHD9', '987 Glacier Hill Pass');
+insert into t_user (name, surname, email, password, address) values ('Kile', 'Braley', 'kbraley1e@linkedin.com', 'I7pyOGKI3', '3 Haas Plaza');
+insert into t_user (name, surname, email, password, address) values ('Jeanelle', 'Lisimore', 'jlisimore1f@businessinsider.com', 'BVEPw3r', '4 Prairie Rose Court');
+insert into t_user (name, surname, email, password, address) values ('Engracia', 'Hurdle', 'ehurdle1g@discuz.net', 'LRS279bl', '15 Sutteridge Terrace');
+insert into t_user (name, surname, email, password, address) values ('Christal', 'Vannozzii', 'cvannozzii1h@earthlink.net', 'xXnYurrZFk', '2687 Reindahl Parkway');
+insert into t_user (name, surname, email, password, address) values ('Dani', 'Safhill', 'dsafhill1i@globo.com', 'F5Gn9pyXfw', '94921 Glendale Avenue');
+insert into t_user (name, surname, email, password, address) values ('Ora', 'Reditt', 'oreditt1j@dropbox.com', 'Di7pmKluz', '9 Talmadge Circle');
+insert into t_user (name, surname, email, password, address) values ('Tarah', 'Smeeton', 'tsmeeton1k@dyndns.org', 'LlujEyfY', '1 Dakota Street');
+insert into t_user (name, surname, email, password, address) values ('Sherwin', 'Dallemore', 'sdallemore1l@indiegogo.com', 'UHbo1uRSiZ', '43 Derek Avenue');
+insert into t_user (name, surname, email, password, address) values ('Keslie', 'Wadmore', 'kwadmore1m@de.vu', 'OGLSJ2AUWOH8', '1 Almo Park');
+insert into t_user (name, surname, email, password, address) values ('Keane', 'Warmisham', 'kwarmisham1n@technorati.com', 'vvyr9ox21IG', '5944 Westport Lane');
+insert into t_user (name, surname, email, password, address) values ('Lilias', 'Heeks', 'lheeks1o@vistaprint.com', 'RTdhCt', '3 Cordelia Plaza');
+insert into t_user (name, surname, email, password, address) values ('Daffie', 'Baleine', 'dbaleine1p@home.pl', 'IG0TACSI7X', '45 Dexter Drive');
+insert into t_user (name, surname, email, password, address) values ('Eleanor', 'Knowlman', 'eknowlman1q@harvard.edu', 'vsgfFIQE', '5598 Pankratz Pass');
+insert into t_user (name, surname, email, password, address) values ('Jesus', 'Paoli', 'jpaoli1r@unesco.org', 'PdNxaGd', '527 Carberry Point');
+insert into t_user (name, surname, email, password, address) values ('Durant', 'Bedbury', 'dbedbury1s@t.co', 'wKHdA4YGAz', '4 Macpherson Pass');
+insert into t_user (name, surname, email, password, address) values ('Mannie', 'Wandrich', 'mwandrich1t@bloglines.com', 'cpDgdDRI', '1 Kings Hill');
+insert into t_user (name, surname, email, password, address) values ('Gigi', 'Borgne', 'gborgne1u@wunderground.com', 'F6o7LNKz', '8917 5th Road');
+insert into t_user (name, surname, email, password, address) values ('Johann', 'Drinkall', 'jdrinkall1v@taobao.com', 'Bfb3BHXon', '46291 Graedel Lane');
+insert into t_user (name, surname, email, password, address) values ('Adolphus', 'Ferries', 'aferries1w@360.cn', 'W9EPLTUTC', '25169 Saint Paul Street');
+insert into t_user (name, surname, email, password, address) values ('Iorgo', 'Hek', 'ihek1x@blogspot.com', '6UZ0Lk0', '5 Hallows Drive');
+insert into t_user (name, surname, email, password, address) values ('Duky', 'Jack', 'djack1y@rambler.ru', 'ESK3LzLhD', '54892 Browning Alley');
+insert into t_user (name, surname, email, password, address) values ('Rochelle', 'Clulow', 'rclulow1z@fema.gov', '0cMqwK', '05226 Brown Center');
+insert into t_user (name, surname, email, password, address) values ('Shirline', 'Westfield', 'swestfield20@ask.com', 'iKdx4R', '8924 Stang Drive');
+insert into t_user (name, surname, email, password, address) values ('Sheeree', 'Preece', 'spreece21@merriam-webster.com', 'R5hL0GH', '554 Schlimgen Circle');
+insert into t_user (name, surname, email, password, address) values ('Ree', 'Dearnaley', 'rdearnaley22@is.gd', '4zG7747', '82398 Larry Drive');
+insert into t_user (name, surname, email, password, address) values ('Tibold', 'Macieiczyk', 'tmacieiczyk23@fastcompany.com', 'pUWaJgCt', '0304 Forest Run Point');
+insert into t_user (name, surname, email, password, address) values ('Rem', 'Teodorski', 'rteodorski24@nifty.com', 'f2D1Fw', '98006 Russell Road');
+insert into t_user (name, surname, email, password, address) values ('Jenelle', 'Surtees', 'jsurtees25@prnewswire.com', 'eBUK8GtixMa', '2444 Dexter Center');
+insert into t_user (name, surname, email, password, address) values ('Cassey', 'O''Shiels', 'coshiels26@cdc.gov', 'Zbgg5FDO', '58559 Springs Parkway');
+insert into t_user (name, surname, email, password, address) values ('Elsbeth', 'MacLachlan', 'emaclachlan27@bbb.org', '5lFVP7', '28177 Lakewood Way');
+insert into t_user (name, surname, email, password, address) values ('Jase', 'Toffano', 'jtoffano28@narod.ru', 'wPcfssaHO', '06821 Quincy Lane');
+insert into t_user (name, surname, email, password, address) values ('Carl', 'Geekie', 'cgeekie29@who.int', 'ywlCcw', '4572 Moulton Trail');
+insert into t_user (name, surname, email, password, address) values ('Fern', 'Cork', 'fcork2a@squidoo.com', 'Ea9lqbA1X', '299 Dakota Court');
+insert into t_user (name, surname, email, password, address) values ('Michail', 'Spurdens', 'mspurdens2b@1688.com', '2QPH73Q1aFsy', '9357 Fuller Pass');
+insert into t_user (name, surname, email, password, address) values ('Fidela', 'McLemon', 'fmclemon2c@uiuc.edu', 'Im5c8HxXV7Q', '6618 Ilene Terrace');
+insert into t_user (name, surname, email, password, address) values ('Emelen', 'Domleo', 'edomleo2d@digg.com', 'NRKD6b', '7856 Bayside Circle');
+insert into t_user (name, surname, email, password, address) values ('Charley', 'Hardan', 'chardan2e@hubpages.com', 'Aqmz3SDM', '71576 Laurel Crossing');
+insert into t_user (name, surname, email, password, address) values ('Kirbie', 'McLaggan', 'kmclaggan2f@wix.com', 'JRh8s2bB', '08540 Hollow Ridge Trail');
+insert into t_user (name, surname, email, password, address) values ('Mignon', 'Nelson', 'mnelson2g@joomla.org', 'A89dvGBaAaH', '441 Stuart Point');
+insert into t_user (name, surname, email, password, address) values ('Bernardine', 'McGowing', 'bmcgowing2h@yandex.ru', 'pabZDrkt1lB', '0698 Reinke Crossing');
+insert into t_user (name, surname, email, password, address) values ('Vannie', 'Krop', 'vkrop2i@weebly.com', 'acTlmJq5K96T', '43 Hoepker Park');
+insert into t_user (name, surname, email, password, address) values ('Lizabeth', 'Newrick', 'lnewrick2j@globo.com', '1JmgaKqkeU', '0 Cambridge Plaza');
+insert into t_user (name, surname, email, password, address) values ('Bertha', 'Purselow', 'bpurselow2k@stumbleupon.com', 'kUffDkv6WP', '33 Mandrake Terrace');
+insert into t_user (name, surname, email, password, address) values ('Arvy', 'Martonfi', 'amartonfi2l@pinterest.com', 'h3EGye', '0322 Kennedy Center');
+insert into t_user (name, surname, email, password, address) values ('Gusty', 'Paynes', 'gpaynes2m@nasa.gov', 'wQa47YgM', '2572 Forster Way');
+insert into t_user (name, surname, email, password, address) values ('Kenna', 'Dayce', 'kdayce2n@ameblo.jp', '7RDr5pxtbMw1', '5 Badeau Trail');
+insert into t_user (name, surname, email, password, address) values ('Antin', 'Antoni', 'aantoni2o@exblog.jp', 'npfZn6', '762 Charing Cross Road');
+insert into t_user (name, surname, email, password, address) values ('Darcy', 'Pitsall', 'dpitsall2p@who.int', 'bVgLiqKF0H4', '95549 Gulseth Parkway');
+insert into t_user (name, surname, email, password, address) values ('Colman', 'Yerborn', 'cyerborn2q@theatlantic.com', 'zTXrTS7', '9896 Prairie Rose Park');
+insert into t_user (name, surname, email, password, address) values ('Marylee', 'Armfield', 'marmfield2r@merriam-webster.com', 'eB2i8XLk29Yo', '15026 Mayer Way');
+
+SELECT * FROM t_tariff;
+
+insert into t_tariff (energy_type, price, start_date, end_date) values ('gas', 40636, '2022-04-11 10:30:45', '2024-11-23 10:30:45');
+insert into t_tariff (energy_type, price, start_date, end_date) values ('gas', 24584, '2022-12-16 10:30:45', '2024-10-17 10:30:45');
+insert into t_tariff (energy_type, price, start_date, end_date) values ('gas', 21474, '2022-09-17 10:30:45', '2024-07-09 10:30:45');
+insert into t_tariff (energy_type, price, start_date, end_date) values ('electricity', 40636, '2022-04-11 10:30:45', '2024-11-23 10:30:45');
+insert into t_tariff (energy_type, price, start_date, end_date) values ('electricity', 24584, '2022-12-16 10:30:45', '2024-10-17 10:30:45');
+insert into t_tariff (energy_type, price, start_date, end_date) values ('electricity', 21474, '2022-09-17 10:30:45', '2024-07-09 10:30:45');
+insert into t_tariff (energy_type, price, start_date, end_date) values ('water', 40636, '2022-04-11 10:30:45', '2024-11-23 10:30:45');
+insert into t_tariff (energy_type, price, start_date, end_date) values ('water', 24584, '2022-12-16 10:30:45', '2024-10-17 10:30:45');
+insert into t_tariff (energy_type, price, start_date, end_date) values ('water', 21474, '2022-09-17 10:30:45', '2024-07-09 10:30:45');
+
+
+select * FROM t_usage;
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (1, 'Constance', 8634, '2022-11-08 07:38:20', 80, 6);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (2, 'Zach', 15219, '2022-09-15 19:46:13', 97, 2);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (3, 'Iggie', 31763, '2022-09-10 02:09:47', 67, 8);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (4, 'Brian', 8437, '2022-11-08 09:08:07', 25, 1);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (5, 'Ainslee', 30636, '2022-07-04 02:06:13', 90, 4);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (6, 'Ariana', 45464, '2022-10-15 02:14:26', 39, 5);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (7, 'Ira', 18468, '2022-12-07 02:20:05', 60, 4);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (8, 'Lettie', 150, '2022-07-25 15:58:51', 87, 2);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (9, 'Yancey', 41632, '2022-10-09 14:44:47', 6, 1);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (10, 'Shelby', 23452, '2022-12-07 08:50:00', 33, 1);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (11, 'Allen', 25760, '2022-09-14 20:40:24', 41, 8);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (12, 'Twila', 19955, '2023-03-04 06:24:24', 88, 2);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (13, 'Ros', 40243, '2023-02-26 01:59:33', 72, 6);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (14, 'Olia', 49387, '2022-03-08 03:37:20', 4, 4);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (15, 'Amberly', 1903, '2022-05-06 03:39:36', 53, 9);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (16, 'Griselda', 23221, '2022-11-20 11:12:13', 78, 1);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (17, 'Ronald', 26242, '2022-04-10 04:05:32', 96, 1);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (18, 'Clary', 26860, '2022-09-04 22:34:32', 52, 6);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (19, 'Derk', 28599, '2023-02-23 11:31:42', 61, 5);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (20, 'Nevsa', 46120, '2022-10-19 03:05:57', 90, 6);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (21, 'Odele', 33119, '2022-08-28 02:23:57', 38, 3);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (22, 'Lorna', 15391, '2022-11-05 00:56:30', 7, 8);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (23, 'Harv', 45982, '2022-07-24 22:33:23', 47, 2);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (24, 'Wayne', 23805, '2022-06-28 09:18:06', 96, 8);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (25, 'Krystalle', 41704, '2022-12-25 23:20:15', 61, 9);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (26, 'Davin', 40114, '2022-07-10 19:42:40', 8, 4);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (27, 'Lucie', 28803, '2022-12-15 11:50:22', 77, 2);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (28, 'Truman', 9390, '2023-03-04 13:36:51', 73, 7);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (29, 'Chrystal', 14307, '2022-11-05 13:09:50', 3, 7);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (30, 'Nolana', 4154, '2022-08-24 11:57:25', 66, 1);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (31, 'Lida', 45877, '2022-05-25 08:11:02', 17, 2);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (32, 'Spike', 40364, '2022-03-29 14:49:27', 13, 3);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (33, 'Dale', 39273, '2022-07-12 13:14:41', 2, 2);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (34, 'Jackqueline', 11227, '2023-02-27 17:08:51', 74, 9);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (35, 'Pollyanna', 40881, '2022-08-23 11:51:11', 36, 6);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (36, 'Diego', 40546, '2023-02-21 12:42:18', 9, 6);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (37, 'Kennie', 8496, '2022-07-25 02:48:56', 94, 4);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (38, 'Cary', 23223, '2023-01-07 23:15:40', 36, 3);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (39, 'Eduardo', 36808, '2022-08-16 11:22:29', 89, 7);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (40, 'Mylo', 31972, '2022-09-15 08:15:45', 39, 6);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (41, 'Tadeo', 25566, '2022-12-19 00:31:43', 80, 3);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (42, 'Devinne', 36834, '2022-05-06 05:35:11', 64, 2);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (43, 'Minette', 5574, '2022-04-12 13:00:50', 64, 3);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (44, 'Fax', 26567, '2022-06-07 19:46:17', 87, 4);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (45, 'Leyla', 49546, '2022-05-07 11:12:32', 4, 5);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (46, 'Norah', 28142, '2022-12-15 15:05:37', 78, 7);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (47, 'Samuele', 21266, '2022-11-16 18:47:16', 31, 2);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (48, 'Linc', 37992, '2023-02-12 03:11:50', 4, 2);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (49, 'Allison', 8535, '2022-06-05 08:37:52', 29, 6);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (50, 'Frants', 43178, '2023-01-15 12:22:16', 29, 3);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (51, 'Raoul', 12391, '2022-07-17 05:20:35', 38, 2);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (52, 'Analiese', 13407, '2022-12-31 22:22:44', 33, 9);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (53, 'Kalli', 34487, '2022-09-21 16:47:02', 76, 6);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (54, 'Tomasine', 47797, '2022-07-18 08:39:35', 17, 4);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (55, 'Leela', 17216, '2022-12-10 21:17:03', 40, 4);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (56, 'Zack', 3979, '2022-11-01 18:24:23', 76, 5);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (57, 'Joshia', 45655, '2022-10-09 03:24:59', 61, 5);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (58, 'Lamont', 28110, '2022-06-12 14:51:38', 55, 9);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (59, 'Cary', 8881, '2022-12-09 04:39:33', 63, 8);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (60, 'Henrieta', 7396, '2022-11-16 05:49:33', 92, 5);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (61, 'Alina', 71, '2023-02-18 02:44:37', 88, 7);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (62, 'Janeva', 11744, '2023-01-06 06:45:10', 58, 8);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (63, 'Cirstoforo', 48812, '2022-09-17 01:24:49', 87, 7);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (64, 'Daniella', 41568, '2022-11-30 19:33:36', 97, 2);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (65, 'Vanna', 7865, '2022-09-20 15:15:03', 29, 7);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (66, 'Cayla', 48057, '2022-05-24 04:17:30', 8, 4);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (67, 'Bridgette', 36350, '2022-12-19 23:27:53', 49, 1);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (68, 'Koo', 15100, '2022-05-11 23:29:46', 92, 5);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (69, 'Janis', 38792, '2022-07-12 22:38:03', 88, 1);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (70, 'Christiane', 42774, '2022-08-12 10:19:26', 79, 8);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (71, 'Happy', 3274, '2023-01-16 13:51:40', 60, 9);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (72, 'Gail', 36103, '2022-09-24 12:35:14', 64, 5);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (73, 'Bernardo', 34642, '2022-08-23 07:04:32', 66, 7);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (74, 'Sam', 43381, '2023-01-28 01:37:32', 55, 9);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (75, 'Morlee', 20582, '2022-10-23 16:16:40', 27, 4);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (76, 'Elmira', 12346, '2023-02-21 02:45:23', 15, 1);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (77, 'Danyette', 45326, '2022-12-21 01:13:44', 51, 4);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (78, 'Talbot', 41124, '2022-08-04 03:43:56', 57, 2);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (79, 'Eimile', 8271, '2023-02-15 06:20:47', 88, 5);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (80, 'Clayborne', 18940, '2023-01-07 23:41:35', 38, 4);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (81, 'Leese', 38577, '2022-11-14 21:08:25', 61, 6);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (82, 'Antonie', 2162, '2022-10-24 10:43:31', 25, 1);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (83, 'Ronny', 24149, '2022-08-31 02:20:59', 13, 8);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (84, 'Kenna', 36138, '2022-11-29 08:40:01', 17, 8);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (85, 'Nonah', 37901, '2022-11-23 22:24:44', 12, 1);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (86, 'Osbourn', 237, '2022-09-23 17:39:24', 16, 3);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (87, 'Jere', 38950, '2022-06-08 13:09:31', 50, 1);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (88, 'Perren', 1486, '2022-04-03 07:00:23', 33, 5);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (89, 'Othella', 15044, '2022-11-15 10:07:43', 45, 8);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (90, 'Dulciana', 8046, '2023-02-01 20:37:56', 19, 8);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (91, 'Juliane', 9870, '2022-07-23 16:47:02', 20, 4);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (92, 'Elfrieda', 47272, '2023-03-04 22:35:42', 42, 8);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (93, 'Annecorinne', 48831, '2022-06-07 05:30:58', 69, 7);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (94, 'Ado', 9372, '2023-01-07 17:11:35', 50, 8);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (95, 'Frederico', 33467, '2022-11-15 07:55:07', 91, 9);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (96, 'Rosabelle', 5699, '2022-11-16 14:18:20', 6, 9);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (97, 'Arlan', 14352, '2022-07-31 22:33:34', 98, 7);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (98, 'Rose', 17079, '2022-12-10 04:58:11', 8, 2);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (99, 'Neddie', 39819, '2022-03-07 00:54:17', 36, 7);
+insert into t_usage (id, type, quantity, date, user_id, tariff_id) values (100, 'Nani', 24985, '2023-01-29 03:37:03', 47, 4);
+
+SELECT * from t_payment;
+
+
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2023-02-06 03:10:32', 25206, 'Bank Transfer
+', 17, 50);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-08-21 14:49:54', 13513, 'Cash', 29, 1);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-11-22 19:40:28', 5898, 'Cash', 89, 75);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-05-16 21:02:01', 32134, 'Bank Transfer
+', 91, 78);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-09-21 16:59:52', 8675, 'Cash', 52, 92);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-12-26 01:28:24', 28396, 'Cash', 15, 13);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-08-19 14:41:50', 31651, 'Cash', 81, 66);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-12-03 02:53:35', 42419, 'Bank Transfer
+', 15, 38);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-03-16 23:40:29', 33075, 'Bank Transfer
+', 7, 46);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-10-19 19:46:35', 6122, 'Bank Transfer
+', 22, 49);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2023-01-23 07:09:05', 49165, 'Cash', 91, 1);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-04-10 11:14:18', 5994, 'Bank Transfer
+', 8, 61);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-08-27 12:18:41', 8994, 'Bank Transfer
+', 2, 76);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-09-14 04:18:19', 18361, 'Cash', 23, 67);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-05-14 17:55:10', 41859, 'Cash', 33, 7);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-12-17 22:41:43', 12917, 'Bank Transfer
+', 66, 86);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-09-19 01:57:12', 22152, 'Cash', 69, 47);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-06-07 19:39:29', 12492, 'Bank Transfer
+', 49, 1);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-05-14 23:34:55', 15815, 'Bank Transfer
+', 79, 11);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-05-30 00:47:44', 24103, 'Bank Transfer
+', 40, 84);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-05-11 22:55:46', 46776, 'Bank Transfer
+', 35, 51);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2023-02-16 23:12:44', 23362, 'Bank Transfer
+', 15, 21);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-09-22 11:35:38', 44282, 'Bank Transfer
+', 7, 56);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-03-16 00:04:34', 3191, 'Cash', 96, 96);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2023-01-23 15:48:47', 10434, 'Cash', 64, 22);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-10-12 00:54:41', 22230, 'Bank Transfer
+', 44, 34);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-12-08 08:50:37', 36273, 'Cash', 66, 58);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2023-01-21 16:52:43', 21050, 'Cash', 25, 98);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2023-01-18 16:55:51', 36624, 'Cash', 66, 44);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-09-06 06:53:25', 25934, 'Cash', 93, 67);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2023-02-03 15:38:37', 22092, 'Cash', 30, 6);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-05-25 17:06:16', 16600, 'Bank Transfer
+', 82, 93);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-05-18 01:16:18', 9193, 'Cash', 45, 45);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2023-01-12 06:14:33', 8286, 'Bank Transfer
+', 87, 40);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-07-15 09:52:46', 23437, 'Bank Transfer
+', 75, 28);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-11-03 14:31:04', 14781, 'Cash', 55, 24);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-05-08 02:47:05', 7042, 'Bank Transfer
+', 39, 18);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2023-01-31 16:38:24', 32333, 'Bank Transfer
+', 76, 51);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-06-16 11:39:19', 20007, 'Bank Transfer
+', 41, 20);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-09-08 01:59:27', 5108, 'Bank Transfer
+', 88, 79);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-05-05 14:56:30', 26000, 'Bank Transfer
+', 53, 26);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2023-02-21 03:15:33', 47641, 'Cash', 11, 22);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-06-18 13:16:16', 2265, 'Cash', 81, 4);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-03-08 00:43:38', 2408, 'Cash', 34, 72);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-04-04 08:30:40', 35835, 'Cash', 3, 56);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-12-17 02:41:03', 23511, 'Cash', 60, 34);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2023-03-02 20:03:20', 28262, 'Cash', 35, 28);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-11-05 13:41:35', 17741, 'Bank Transfer
+', 6, 20);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2023-01-05 18:09:42', 42762, 'Cash', 49, 36);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2023-02-26 22:30:46', 14012, 'Bank Transfer
+', 89, 42);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-09-22 16:52:48', 42701, 'Bank Transfer
+', 3, 93);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-11-08 19:38:40', 28938, 'Bank Transfer
+', 94, 68);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2023-02-13 18:45:23', 27703, 'Cash', 63, 16);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-06-02 15:11:02', 16397, 'Bank Transfer
+', 47, 75);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-08-12 01:01:06', 2790, 'Bank Transfer
+', 19, 5);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-07-01 05:36:30', 2737, 'Cash', 68, 48);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-07-07 15:37:56', 17044, 'Cash', 86, 51);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2023-02-27 07:18:37', 37895, 'Cash', 68, 23);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-07-16 04:25:32', 26875, 'Cash', 62, 52);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-09-26 05:22:31', 47157, 'Cash', 25, 65);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-03-06 05:30:53', 17202, 'Cash', 69, 30);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-03-17 12:34:24', 31048, 'Bank Transfer
+', 17, 24);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-04-09 23:34:39', 44192, 'Cash', 51, 63);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-10-15 04:56:24', 14103, 'Cash', 10, 23);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2023-01-14 10:22:36', 49848, 'Cash', 84, 86);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-10-22 13:29:05', 16062, 'Cash', 43, 69);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-06-05 22:01:43', 19839, 'Cash', 49, 99);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-10-22 21:33:45', 44929, 'Bank Transfer
+', 55, 29);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-07-18 12:25:53', 33554, 'Bank Transfer
+', 18, 61);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-05-05 13:22:14', 36876, 'Cash', 90, 39);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-10-25 05:33:34', 29034, 'Cash', 16, 97);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-06-27 01:44:35', 22136, 'Bank Transfer
+', 61, 77);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-05-24 07:42:12', 949, 'Cash', 88, 93);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-04-13 15:11:06', 19852, 'Cash', 88, 18);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-04-22 19:12:39', 42650, 'Cash', 21, 60);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2023-01-26 20:25:26', 22948, 'Bank Transfer
+', 15, 72);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-12-25 18:50:02', 20553, 'Cash', 20, 55);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-12-07 07:01:00', 9980, 'Cash', 37, 39);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-07-24 01:10:01', 20832, 'Cash', 97, 86);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-06-04 16:29:48', 37564, 'Cash', 12, 40);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2023-01-24 21:38:28', 21010, 'Cash', 17, 79);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-04-26 16:30:38', 27979, 'Bank Transfer
+', 76, 94);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-04-21 08:59:16', 27690, 'Cash', 22, 92);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-12-26 10:51:50', 15847, 'Bank Transfer
+', 9, 49);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-11-09 20:17:00', 45573, 'Cash', 25, 27);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-07-18 03:17:19', 27769, 'Cash', 26, 39);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-12-20 06:18:13', 23087, 'Bank Transfer
+', 36, 3);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2023-01-04 19:48:18', 15365, 'Bank Transfer
+', 59, 12);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-10-05 18:15:15', 47856, 'Cash', 4, 14);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-08-13 16:24:36', 41010, 'Cash', 36, 42);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2023-01-04 00:17:39', 20576, 'Cash', 9, 9);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2023-01-08 21:01:14', 29560, 'Bank Transfer
+', 8, 73);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-06-12 08:36:14', 3594, 'Cash', 81, 12);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-04-15 04:23:30', 26899, 'Bank Transfer
+', 45, 78);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-08-02 09:42:51', 37122, 'Bank Transfer
+', 53, 25);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-11-08 23:13:20', 37708, 'Cash', 79, 70);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-04-13 21:02:52', 528, 'Cash', 38, 13);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-05-05 02:36:10', 26379, 'Bank Transfer
+', 36, 84);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-06-07 13:40:31', 42139, 'Cash', 4, 45);
+insert into t_payment (payment_time, amount, payment_type, user_id, usage_id) values ('2022-07-14 06:24:02', 31094, 'Bank Transfer
+', 69, 96);
+
