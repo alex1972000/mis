@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Our activities" company="Inkasus" webLink="https://alex1972000.github.io/mis/" view-date="2023-01-04" view-index="0" gantt-divider-location="453" resource-divider-location="300" version="3.2.3230" locale="sk_SK">
+    <description/>
+    <view zooming-state="default:2" id="gantt-chart">
+        <field id="tpd3" name="Názov" width="258" order="0"/>
+        <field id="tpd4" name="Zahájenie" width="97" order="1"/>
+        <field id="tpd5" name="Ukončenie" width="97" order="2"/>
+        <option id="filter.completedTasks" value="false"/>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Názov" width="210" order="0"/>
+        <field id="1" name="Prednastav. rola" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="0" name="tvorba anotácie projektu" color="#8cb6ce" meeting="false" start="2023-02-13" duration="7" complete="0" thirdDate="2023-04-03" thirdDate-constraint="0" expand="true">
+            <depend id="1" type="1" difference="0" hardness="Strong"/>
+            <depend id="2" type="2" difference="0" hardness="Strong"/>
+            <depend id="11" type="3" difference="0" hardness="Rubber"/>
+        </task>
+        <task id="1" name="tvorba stránky projektu" color="#8cb6ce" meeting="false" start="2023-02-13" duration="7" complete="0" thirdDate="2023-04-03" thirdDate-constraint="0" expand="true">
+            <depend id="2" type="2" difference="0" hardness="Strong"/>
+            <depend id="11" type="3" difference="0" hardness="Rubber"/>
+        </task>
+        <task id="2" name="definovanie požiadaviek" color="#8cb6ce" meeting="false" start="2023-02-22" duration="7" complete="0" thirdDate="2023-04-03" thirdDate-constraint="0" expand="true">
+            <depend id="11" type="3" difference="0" hardness="Rubber"/>
+        </task>
+        <task id="3" name="SWOT analýza" color="#8cb6ce" meeting="false" start="2023-02-27" duration="7" complete="0" thirdDate="2023-04-03" thirdDate-constraint="0" expand="true">
+            <depend id="11" type="3" difference="0" hardness="Rubber"/>
+        </task>
+        <task id="4" name="etické aspekty" color="#8cb6ce" meeting="false" start="2023-03-27" duration="3" complete="0" thirdDate="2023-04-03" thirdDate-constraint="0" expand="true">
+            <depend id="11" type="3" difference="0" hardness="Rubber"/>
+        </task>
+        <task id="5" name="PowerBI" color="#8cb6ce" meeting="false" start="2023-03-27" duration="3" complete="0" thirdDate="2023-04-03" thirdDate-constraint="0" expand="true">
+            <depend id="11" type="3" difference="0" hardness="Rubber"/>
+        </task>
+        <task id="12" name="gantt diagram" color="#8cb6ce" meeting="false" start="2023-03-27" duration="7" complete="0" thirdDate="2023-02-06" thirdDate-constraint="0" expand="true">
+            <depend id="11" type="3" difference="0" hardness="Rubber"/>
+        </task>
+        <task id="6" name="model social computing" color="#8cb6ce" meeting="false" start="2023-04-03" duration="7" complete="0" thirdDate="2023-04-03" thirdDate-constraint="0" expand="true">
+            <depend id="11" type="3" difference="0" hardness="Rubber"/>
+        </task>
+        <task id="7" name="procesný model projektu" color="#8cb6ce" meeting="false" start="2023-04-10" duration="7" complete="0" thirdDate="2023-04-03" thirdDate-constraint="0" expand="true">
+            <depend id="11" type="3" difference="0" hardness="Rubber"/>
+        </task>
+        <task id="8" name="návrh používateľského rozhrania" color="#8cb6ce" meeting="false" start="2023-04-17" duration="7" complete="0" thirdDate="2023-04-03" thirdDate-constraint="0" expand="true">
+            <depend id="11" type="3" difference="0" hardness="Rubber"/>
+        </task>
+        <task id="9" name="vytvorenie dodávateľského reťazca" color="#8cb6ce" meeting="false" start="2023-04-25" duration="7" complete="0" thirdDate="2023-04-03" thirdDate-constraint="0" expand="true">
+            <depend id="11" type="3" difference="0" hardness="Rubber"/>
+        </task>
+        <task id="10" name="záverečna prezentácia" color="#8cb6ce" meeting="false" start="2023-05-01" duration="7" complete="0" thirdDate="2023-04-03" thirdDate-constraint="0" expand="true">
+            <depend id="11" type="3" difference="0" hardness="Rubber"/>
+        </task>
+        <task id="11" name="plánovanie projektu a sledovanie plnenia" color="#8cb6ce" meeting="false" start="2023-02-13" duration="67" complete="0" thirdDate="2023-04-03" thirdDate-constraint="0" expand="true"/>
+    </tasks>
+    <resources>
+        <resource id="0" name="Roman Marian" function="Default:1" contacts="Rkjhdkj@hjbxvkj.com" phone="893475680975">
+            <rate name="standard" value="1000000000"/>
+        </resource>
+        <resource id="1" name="Alex Gajdoš" function="1" contacts="ghjb@gmail.com" phone="3409609">
+            <rate name="standard" value="1000000000000"/>
+        </resource>
+        <resource id="2" name="Vasylieva Elizaveta" function="2" contacts="dkjfkbkjh@gmail.com" phone="3487634879">
+            <rate name="standard" value="100"/>
+        </resource>
+        <resource id="3" name="Oleksandr Shepa" function="4" contacts="dkrngkldj@gmail.com" phone="228228">
+            <rate name="standard" value="1000000000000000000000000000"/>
+        </resource>
+    </resources>
+    <allocations>
+        <allocation task-id="12" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="4" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="0" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="5" resource-id="0" function="3" responsible="false" load="100.0"/>
+        <allocation task-id="8" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="9" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="11" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="1" resource-id="1" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="3" resource-id="1" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="5" resource-id="1" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="6" resource-id="1" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="7" resource-id="1" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="8" resource-id="1" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="9" resource-id="1" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="10" resource-id="1" function="1" responsible="false" load="100.0"/>
+        <allocation task-id="0" resource-id="2" function="2" responsible="true" load="100.0"/>
+        <allocation task-id="2" resource-id="2" function="2" responsible="true" load="100.0"/>
+        <allocation task-id="3" resource-id="2" function="2" responsible="false" load="100.0"/>
+        <allocation task-id="4" resource-id="2" function="2" responsible="false" load="100.0"/>
+        <allocation task-id="8" resource-id="2" function="2" responsible="false" load="100.0"/>
+        <allocation task-id="10" resource-id="2" function="2" responsible="true" load="100.0"/>
+        <allocation task-id="8" resource-id="3" function="4" responsible="false" load="100.0"/>
+        <allocation task-id="10" resource-id="3" function="4" responsible="false" load="100.0"/>
+        <allocation task-id="11" resource-id="3" function="4" responsible="false" load="100.0"/>
+    </allocations>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+    <roles>
+        <role id="1" name="it specialist"/>
+        <role id="2" name="creative person"/>
+        <role id="3" name="project manager"/>
+        <role id="4" name="ukončovateľ"/>
+    </roles>
+</project>
